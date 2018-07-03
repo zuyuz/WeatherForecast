@@ -1,0 +1,8 @@
+Forecast for {{city}}
+
+<div class="container" ng-repeat="forecast in data.list">
+    <h2>{{forecast.dt_txt}}</h2>
+    <div class="panel panel-default">
+        <div class="panel-body"> Temperature is <b>{{convert(forecast.main.temp)}}</b></div>
+    </div>
+</div>
