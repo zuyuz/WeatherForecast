@@ -13,7 +13,7 @@ weatherApp.controller('homeController', ['$scope', '$location', 'forecastService
     };
 }]);
 
-weatherApp.controller('forecastController', ['$scope', '$http', 'forecastService', '$routeParams', function ($scope, $http, forecastService, $routeParams) {
+weatherApp.controller('forecastController', ['$scope', 'forecastService', '$routeParams', 'weatherService', function ($scope, forecastService, $routeParams, weatherService) {
 
     console.log($routeParams);
 
@@ -24,20 +24,10 @@ weatherApp.controller('forecastController', ['$scope', '$http', 'forecastService
     };
 
     $scope.days = $routeParams.days || 2;
-
+    
     $scope.temperature = 0;
-    var self = $scope;
 
-    var query = "http://api.openweathermap.org/data/2.5/forecast?q="
-        + $scope.city
-        + "&cnt="
-        + $scope.days
-        + "&APPID=142ee522d7801a1529a15ec5c6d7c7f6";
-
-    $http.jsonp(query).then(function (response) {
-        self.data = response.data;
-        console.log(self.data);
-    });
+    $scope.data = weatherService.GetWeather($scope.city, $scope.days);
 
     $scope.convertToDate = function (dt) {
         return new Date(dt * 1000);
