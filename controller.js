@@ -1,5 +1,5 @@
 // CONTROLLERS
-weatherApp.controller('homeController', ['$scope', 'forecastService', function ($scope, forecastService) {
+weatherApp.controller('homeController', ['$scope', '$location', 'forecastService', function ($scope, $location, forecastService) {
     forecastService.city = "Lviv";
     console.log(forecastService.city);
     $scope.city = forecastService.city;
@@ -8,15 +8,11 @@ weatherApp.controller('homeController', ['$scope', 'forecastService', function (
         forecastService.city = $scope.city;
     });
 
-    // $scope.getForecastByCity = function(c){
-    //     forecastService.city = c;
-    //     console.log(forecastService.city);
-    // }
+    $scope.submit = function(){
+        $location.path("/forecast")
+    };
 }]);
 
-/*
-http://api.openweathermap.org/data/2.5/forecast?q=London&APPID=142ee522d7801a1529a15ec5c6d7c7f6
- */
 weatherApp.controller('forecastController', ['$scope', '$http', 'forecastService', '$routeParams', function ($scope, $http, forecastService, $routeParams) {
 
     console.log($routeParams);
