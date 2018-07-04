@@ -1,0 +1,8 @@
+<div class="container">
+    <h2>{{convertToDate({dt: dateTime}) | date: 'MMM d, y'}}</h2>
+    <div class="panel panel-default">
+        <div class="panel-body"> 
+            Temperature is <b>{{ convert({degK: temperature})}}</b>
+        </div>
+    </div>
+</div>
